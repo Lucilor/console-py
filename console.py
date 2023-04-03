@@ -193,3 +193,6 @@ class Console:
     @staticmethod
     def removeTextColor(text: str):
         return re.sub(r"\x1b\[[0-9]+m", "", text)
+
+
+console = Console()
