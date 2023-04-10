@@ -1,3 +1,3 @@
-from .console import Console
+from .console import Console, console
 
-__all__ = ["Console"]
+__all__ = ["Console", "console"]
