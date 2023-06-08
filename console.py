@@ -160,7 +160,7 @@ class Console:
         #     return None
 
     @staticmethod
-    def strAlign(text: str, length: int, type: str):
+    def strAlign(text: str, length: int, type: str = "", fill: str = " "):
         spaceNum = length - Console.strLen(text)
         if type == "L":
             left = 0
@@ -171,7 +171,7 @@ class Console:
         else:
             left = spaceNum // 2
             right = spaceNum - left
-        return " " * left + text + " " * right
+        return fill * left + text + fill * right
 
     @staticmethod
     def round(num, bits=2):
