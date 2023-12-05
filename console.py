@@ -2,7 +2,7 @@ import json
 import math
 import re
 import time
-from typing import Any, Optional, Union
+from typing import Any
 
 from colorama import Fore, init
 
@@ -12,7 +12,7 @@ init()
 class Console:
     lastTimestamp = -1
     disabled = False
-    logPath: Optional[str] = None
+    logPath: str | None = None
     indent = 4
     lock = None
     isLocking = False
@@ -24,9 +24,9 @@ class Console:
     def log(
         self,
         text: Any = None,
-        color: Optional[str] = None,
-        begin: Optional[Union[float, bool]] = None,
-        indent: Union[int, bool] = False,
+        color: str | None = None,
+        begin: float | bool | None = None,
+        indent: int | bool = False,
         prefix: str = "",
         inOneLine: bool = False,
     ) -> float:
@@ -54,7 +54,7 @@ class Console:
         maxLength = self.maxLength
         if text is None:
             text = "".ljust(maxLength, "-")
-        if type(text) != str:
+        if not isinstance(text, str):
             raise Exception("text type error")
         now = time.localtime(t)
         h = str(now.tm_hour).zfill(2)
@@ -114,8 +114,8 @@ class Console:
     def success(
         self,
         text: Any = None,
-        begin: Optional[Union[float, bool]] = None,
-        indent: Union[int, bool] = False,
+        begin: float | bool | None = None,
+        indent: int | bool = False,
         inOneLine: bool = False,
     ):
         return self.log(text, Fore.GREEN, begin, indent, "SUCCESS: ", inOneLine)
@@ -123,8 +123,8 @@ class Console:
     def warning(
         self,
         text: Any = None,
-        begin: Optional[Union[float, bool]] = None,
-        indent: Union[int, bool] = False,
+        begin: float | bool | None = None,
+        indent: int | bool = False,
         inOneLine: bool = False,
     ):
         return self.log(text, Fore.YELLOW, begin, indent, "WARNING: ", inOneLine)
@@ -132,8 +132,8 @@ class Console:
     def error(
         self,
         text: Any = None,
-        begin: Optional[Union[float, bool]] = None,
-        indent: Union[int, bool] = False,
+        begin: float | bool | None = None,
+        indent: int | bool = False,
         inOneLine: bool = False,
     ):
         return self.log(text, Fore.RED, begin, indent, "ERROR  : ", inOneLine)
@@ -141,8 +141,8 @@ class Console:
     def info(
         self,
         text: Any = None,
-        begin: Optional[Union[float, bool]] = None,
-        indent: Union[int, bool] = False,
+        begin: float | bool | None = None,
+        indent: int | bool = False,
         inOneLine: bool = False,
     ):
         return self.log(text, Fore.CYAN, begin, indent, "INFO   : ", inOneLine)
